@@ -3,6 +3,7 @@
     import Time from "$lib/components/time/time.svelte";
     import Idea from "$lib/components/idea/idea.svelte";
     import Links from "$lib/components/links/links.svelte";
+    import Login from "$lib/components/login/login.svelte";
 
     let currentTime;
     function changeBackground() {
@@ -34,6 +35,7 @@
     setInterval(changeBackground, 2000);
 </script>
 
+<!-- {#if false} -->
 <div id="dashboard" style="background-image: url({currentTime});">
     <div class="card" id="time">
         <Time />
@@ -54,6 +56,10 @@
         <Idea />
     </div>
 </div>
+<!-- {:else}
+    <Login /> -->
+<!-- {/if} -->
+
 
 <style>
     #dashboard {

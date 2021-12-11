@@ -8,7 +8,9 @@
   },
   "devDependencies": {
     "@sveltejs/kit": "next",
-    "svelte": "^3.42.6"
+    "svelte": "^3.42.6",
+    "@supabase/supabase-js": "^1.28.5"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {}
 }
