@@ -1,0 +1,19 @@
+#svelte, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+}
+
+.input-field {
+    width: 50%;
+    padding: 10px 30px;
+}
+
+.input-button {
+    padding: 10px 20px;
+    background-color: palevioletred;
+    color: white;
+    border: 3px outset white;
+}

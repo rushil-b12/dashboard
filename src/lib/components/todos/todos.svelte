@@ -3,11 +3,11 @@
     import Todolist from './todolist.svelte'
     import { todoStore } from "$lib/stores/todo.stores.js";
     const addTodo = (e)=> {
-        let content = e.detail
-        todoStore.set([...$todoStore, {content, completed:false}])
+        console.log(e.detail)
+        let task = e.detail
+        todoStore.set([...$todoStore, {task, completed:false}])
     }
-    console.log(todoStore)
-    $:todos = $todoStore
+    console.log($todoStore)
 </script>
 
 <Newtodo
@@ -15,5 +15,11 @@
 />
 
 <Todolist
-    bind:todos
+    bind:todos={$todoStore}
 />
+
+<style>
+    todoStore {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+</style>
