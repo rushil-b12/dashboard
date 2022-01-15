@@ -4,6 +4,10 @@
     import Idea from "$lib/components/idea/idea.svelte";
     import Links from "$lib/components/links/links.svelte";
     import Login from "$lib/components/login/login.svelte";
+    import { session } from "$app/stores";
+import { unsetAuthCookie } from "$lib/utils/session";
+
+    console.log($session)
 
     let currentTime;
     function changeBackground() {
@@ -35,7 +39,7 @@
     setInterval(changeBackground, 2000);
 </script>
 
-<!-- {#if false} -->
+{#if $session.user.aud === "authenticated"}
 <div id="dashboard" style="background-image: url({currentTime});">
     <div class="card" id="time">
         <Time />
@@ -56,9 +60,12 @@
         <Idea />
     </div>
 </div>
-<!-- {:else}
-    <Login /> -->
-<!-- {/if} -->
+{:else}
+    <div class="card" id="login">
+        <!-- <h1>Sign In</h1> -->
+        <Login />
+    </div>
+{/if}
 
 
 <style>
@@ -76,6 +83,12 @@
         padding-left: 1rem;
         padding-right: 1rem;
         border: 10pt outset white;
+    }
+    #login {
+        display: grid;
+        place-content: center;
+        margin: 3rem;
+        border-color: silver;
     }
     h1 {
         font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
