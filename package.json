@@ -7,9 +7,9 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@sveltejs/kit": "next",
-    "svelte": "^3.42.6",
-    "@supabase/supabase-js": "^1.8.0"
+    "@supabase/supabase-js": "^1.29.3",
+    "@sveltejs/kit": "^1.0.0-next.239",
+    "svelte": "^3.46.2"
   },
   "type": "module",
   "dependencies": {

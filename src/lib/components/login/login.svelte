@@ -17,6 +17,7 @@ import { supabase } from "$lib/db";
             } else {
                 alert('Registered, please confirm your email address.')
             }
+            location.reload()
         }
     }
 </script>

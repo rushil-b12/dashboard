@@ -4,10 +4,8 @@
     import Idea from "$lib/components/idea/idea.svelte";
     import Links from "$lib/components/links/links.svelte";
     import Login from "$lib/components/login/login.svelte";
-    import { session } from "$app/stores";
-import { unsetAuthCookie } from "$lib/utils/session";
-
-    console.log($session)
+    import { supabase, user } from "$lib/db";
+    import { goto } from "$app/navigation";
 
     let currentTime;
     function changeBackground() {
@@ -35,38 +33,44 @@ import { unsetAuthCookie } from "$lib/utils/session";
                 break;
         }
     }
+
+    const signOut = async () => {
+        await supabase.auth.signOut();
+        goto("/dashboard");
+    };
     changeBackground();
     setInterval(changeBackground, 2000);
+    console.log($user);
 </script>
 
-{#if $session.user.aud === "authenticated"}
-<div id="dashboard" style="background-image: url({currentTime});">
-    <div class="card" id="time">
-        <Time />
-    </div>
+{#if $user}
+    <div id="dashboard" style="background-image: url({currentTime});">
+        <div class="card" id="time">
+            <Time />
+        </div>
 
-    <div class="card" id="links">
-        <h1>Bookmarks</h1>
-        <Links />
-    </div>
+        <div class="card" id="links">
+            <h1>Bookmarks</h1>
+            <Links />
+        </div>
 
-    <div class="card" id="todos">
-        <h1>Todos</h1>
-        <Todos />
-    </div>
+        <div class="card" id="todos">
+            <h1>Todos</h1>
+            <Todos />
+        </div>
 
-    <div class="card" id="groundbreaking-idea">
-        <h1>Groundbreaking Idea</h1>
-        <Idea />
+        <div class="card" id="groundbreaking-idea">
+            <h1>Groundbreaking Idea</h1>
+            <Idea />
+        </div>
     </div>
-</div>
+    <button on:click={signOut}>Log Out</button>
 {:else}
     <div class="card" id="login">
         <!-- <h1>Sign In</h1> -->
         <Login />
     </div>
 {/if}
-
 
 <style>
     #dashboard {
